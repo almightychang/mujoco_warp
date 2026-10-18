@@ -1,0 +1,5 @@
+selection      mean short  p99 short  max short  <4 pts  moved
+hill climb       2.78e-01   1.00e+00   1.00e+00    9.0%   2.3%
+diagonal scan    1.96e-10   0.00e+00   1.16e-07    0.0%   0.0%
+greedy           1.01e-01   1.00e+00   1.00e+00    5.5%   0.7%
+ear decimation   2.51e-02   1.09e-01   1.26e-01    0.0%   0.0%
