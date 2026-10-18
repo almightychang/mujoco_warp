@@ -21,7 +21,8 @@ from quad_check import exhaustive
 from quad_check import hill_climb
 from quad_check import random_polygon
 
-FIXED_DIR = np.array([0.6, 0.8, 0.0])
+# the GPU anchor 2 t1 + t2 for normal z, where orthogonals gives t1 = y, t2 = z x y = -x
+FIXED_DIR = np.array([-1.0, 2.0, 0.0]) / np.sqrt(5.0)
 
 
 def plane_normal(p):

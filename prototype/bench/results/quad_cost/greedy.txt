@@ -1,0 +1,48 @@
+round 1 stack_box_aligned hill sps=1,226,618 convex_narrowphase=67.01
+round 1 stack_box_aligned diag sps=2,527,968 convex_narrowphase=48.43
+round 1 stack_box_aligned greedy sps=2,401,728 convex_narrowphase=47.23
+round 1 stack_mesh_aligned hill sps=1,059,509 convex_narrowphase=78.35
+round 1 stack_mesh_aligned diag sps=2,994,567 convex_narrowphase=57.36
+round 1 stack_mesh_aligned greedy sps=2,769,388 convex_narrowphase=56.14
+round 1 stack_cylinder hill sps=81,419 convex_narrowphase=450.25
+round 1 stack_cylinder diag sps=59,054 convex_narrowphase=683.14
+round 1 stack_cylinder greedy sps=81,861 convex_narrowphase=437.43
+round 1 hill aloha_pot.steps_per_second: 2156302.4529501237
+round 1 hill aloha_pot.step.forward.fwd_position.collision.convex_narrowphase: 82.03761868602638
+round 1 hill aloha_clutter.steps_per_second: 302061.50980730297
+round 1 hill aloha_clutter.step.forward.fwd_position.collision.convex_narrowphase[0]: 779.2682324938526
+round 1 hill aloha_clutter.step.forward.fwd_position.collision.convex_narrowphase[1]: 38.939919628512406
+round 1 diag aloha_pot.steps_per_second: 1939457.2617578758
+round 1 diag aloha_pot.step.forward.fwd_position.collision.convex_narrowphase: 133.69301806604554
+round 1 diag aloha_clutter.steps_per_second: 302223.5444528855
+round 1 diag aloha_clutter.step.forward.fwd_position.collision.convex_narrowphase[0]: 778.048260563013
+round 1 diag aloha_clutter.step.forward.fwd_position.collision.convex_narrowphase[1]: 38.76848761264429
+round 1 greedy aloha_pot.steps_per_second: 2174363.3433572245
+round 1 greedy aloha_pot.step.forward.fwd_position.collision.convex_narrowphase: 79.21097251407748
+round 1 greedy aloha_clutter.steps_per_second: 301733.39031097037
+round 1 greedy aloha_clutter.step.forward.fwd_position.collision.convex_narrowphase[0]: 778.5321019036464
+round 1 greedy aloha_clutter.step.forward.fwd_position.collision.convex_narrowphase[1]: 38.844323699915826
+round 2 stack_box_aligned hill sps=1,222,724 convex_narrowphase=66.69
+round 2 stack_box_aligned diag sps=2,526,161 convex_narrowphase=48.40
+round 2 stack_box_aligned greedy sps=2,255,785 convex_narrowphase=47.29
+round 2 stack_mesh_aligned hill sps=1,059,416 convex_narrowphase=78.30
+round 2 stack_mesh_aligned diag sps=3,008,161 convex_narrowphase=57.95
+round 2 stack_mesh_aligned greedy sps=3,138,475 convex_narrowphase=56.09
+round 2 stack_cylinder hill sps=81,731 convex_narrowphase=449.29
+round 2 stack_cylinder diag sps=28,543 convex_narrowphase=673.63
+round 2 stack_cylinder greedy sps=82,043 convex_narrowphase=438.41
+round 2 hill aloha_pot.steps_per_second: 2155795.848033993
+round 2 hill aloha_pot.step.forward.fwd_position.collision.convex_narrowphase: 81.9504831150999
+round 2 hill aloha_clutter.steps_per_second: 301692.3845410794
+round 2 hill aloha_clutter.step.forward.fwd_position.collision.convex_narrowphase[0]: 781.7843788653587
+round 2 hill aloha_clutter.step.forward.fwd_position.collision.convex_narrowphase[1]: 39.35618302020699
+round 2 diag aloha_pot.steps_per_second: 1940935.826038267
+round 2 diag aloha_pot.step.forward.fwd_position.collision.convex_narrowphase: 133.56830663338246
+round 2 diag aloha_clutter.steps_per_second: 302076.5605269315
+round 2 diag aloha_clutter.step.forward.fwd_position.collision.convex_narrowphase[0]: 780.3026114815995
+round 2 diag aloha_clutter.step.forward.fwd_position.collision.convex_narrowphase[1]: 38.126101939301314
+round 2 greedy aloha_pot.steps_per_second: 2167536.3047489887
+round 2 greedy aloha_pot.step.forward.fwd_position.collision.convex_narrowphase: 79.60659642193278
+round 2 greedy aloha_clutter.steps_per_second: 301728.9274340653
+round 2 greedy aloha_clutter.step.forward.fwd_position.collision.convex_narrowphase[0]: 780.3075755397176
+round 2 greedy aloha_clutter.step.forward.fwd_position.collision.convex_narrowphase[1]: 39.31537390532809
