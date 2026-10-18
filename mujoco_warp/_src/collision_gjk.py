@@ -1452,39 +1452,16 @@ def _area4(a: wp.vec3, b: wp.vec3, c: wp.vec3, d: wp.vec3) -> float:
 @wp.func
 def _polygon_quad(polygon: wp.array[wp.vec3], npolygon: int) -> wp.vec4i:
   """Returns the indices of a quadrilateral of maximum area in a convex polygon (npolygon > 4)."""
-  b = int(1)
-  c = int(2)
-  d = int(3)
-  res = wp.vec4i(0, b, c, d)
-  m = _area4(polygon[0], polygon[b], polygon[c], polygon[d])
+  res = wp.vec4i(0, 1, 2, 3)
+  m = float(-1.0)
   for a in range(npolygon):
-    while True:
-      m_next = _area4(polygon[a], polygon[b], polygon[c], polygon[(d + 1) % npolygon])
-      if m_next <= m:
-        break
-      m = m_next
-      d = (d + 1) % npolygon
-      res = wp.vec4i(a, b, c, d)
-      while True:
-        m_next = _area4(polygon[a], polygon[b], polygon[(c + 1) % npolygon], polygon[d])
-        if m_next <= m:
-          break
-        m = m_next
-        c = (c + 1) % npolygon
-        res = wp.vec4i(a, b, c, d)
-      while True:
-        m_next = _area4(polygon[a], polygon[(b + 1) % npolygon], polygon[c], polygon[d])
-        if m_next <= m:
-          break
-        m = m_next
-        b = (b + 1) % npolygon
-        res = wp.vec4i(a, b, c, d)
-    if b == a:
-      b = (b + 1) % npolygon
-      if c == b:
-        c = (c + 1) % npolygon
-        if d == c:
-          d = (d + 1) % npolygon
+    for b in range(a + 1, npolygon):
+      for c in range(b + 1, npolygon):
+        for d in range(c + 1, npolygon):
+          area = _area4(polygon[a], polygon[b], polygon[c], polygon[d])
+          if area > m:
+            m = area
+            res = wp.vec4i(a, b, c, d)
   return res
 
 
