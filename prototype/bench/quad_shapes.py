@@ -1,7 +1,7 @@
 """Area shortfall and coherence of multicontact selections on three kinds of contact polygons.
 
 random: convex polygons with edge points and near-duplicates (quad_check.random_polygon).
-symmetric: a regular 16-gon (a cylinder cap) and two equal 16-gons rotated by 1e-4..1e-2 (32 points).
+symmetric: a regular 16-gon (a cylinder cap); two equal 16-gons rotated by 1e-4..1e-2 (32 pts).
 plates: two equal rectangles (#1798's plates) rotated by 1e-5..1e-3 rad and offset by up to 1 um,
 clipped against each other, so corners are cut by micrometres and edges cross at shallow angles.
 Coherence: selected points move by more than 1e-4 m under 1e-8 noise on every vertex.

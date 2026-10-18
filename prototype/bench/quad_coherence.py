@@ -29,9 +29,11 @@ def plane_normal(p):
 
 
 def greedy(p):
-  """Anchored greedy as in Gregorius (GDC 2015): support point along a fixed direction, the point
-  farthest from it, the point making the largest triangle with them, then the point that adds the
-  most area outside the triangle."""
+  """Anchored greedy as in Gregorius (GDC 2015).
+
+  The support point along a fixed direction, the point farthest from it, the point making the
+  largest triangle with them, then the point that adds the most area outside the triangle.
+  """
   normal = plane_normal(p)
   a = int(np.argmax(p @ FIXED_DIR))
   b = int(np.argmax(np.sum((p - p[a]) ** 2, axis=1)))
@@ -44,7 +46,7 @@ def greedy(p):
 
 
 def ear_decimation(p):
-  """Removes the vertex whose triangle with its two neighbors has the smallest area, until 4 remain."""
+  """Drops the vertex whose triangle with its two neighbors is smallest, until 4 remain."""
   idx = list(range(len(p)))
   normal = plane_normal(p)
 
