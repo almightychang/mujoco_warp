@@ -1,0 +1,16 @@
+<mujoco>
+  <option timestep="0.002" solver="CG" cone="elliptic" impratio="10" integrator="implicitfast"
+          iterations="100" ls_iterations="15" tolerance="1e-6"/>
+  <worldbody>
+    <geom type="box" size="0.5 0.5 0.02" pos="0 0 0.02"/>
+    <body pos="-0.2 0 0.09"><freejoint/><geom type="cylinder" size="0.05 0.05" mass="0.2"/></body>
+    <body pos="-0.2 0 0.19"><freejoint/><geom type="cylinder" size="0.05 0.05" mass="0.2"/></body>
+    <body pos="-0.2 0 0.29"><freejoint/><geom type="cylinder" size="0.05 0.05" mass="0.2"/></body>
+    <body pos="0 0 0.09"><freejoint/><geom type="cylinder" size="0.05 0.05" mass="0.2"/></body>
+    <body pos="0 0 0.19"><freejoint/><geom type="cylinder" size="0.05 0.05" mass="0.2"/></body>
+    <body pos="0 0 0.29"><freejoint/><geom type="cylinder" size="0.05 0.05" mass="0.2"/></body>
+    <body pos="0.2 0 0.09"><freejoint/><geom type="cylinder" size="0.05 0.05" mass="0.2"/></body>
+    <body pos="0.2 0 0.19"><freejoint/><geom type="cylinder" size="0.05 0.05" mass="0.2"/></body>
+    <body pos="0.2 0 0.29"><freejoint/><geom type="cylinder" size="0.05 0.05" mass="0.2"/></body>
+  </worldbody>
+</mujoco>

@@ -1444,24 +1444,35 @@ def _epa(
 
 
 @wp.func
-def _area4(a: wp.vec3, b: wp.vec3, c: wp.vec3, d: wp.vec3) -> float:
-  """Computes area of a quadrilateral embedded in 3D space."""
-  return 0.5 * wp.norm_l2(wp.cross(a - c, b - d))
+def _farthest_from_line(polygon: wp.array[wp.vec3], start: int, end: int, p: wp.vec3, dir: wp.vec3) -> Tuple[int, float]:
+  """Returns the vertex in [start, end) farthest from line p + t dir, and its distance × |dir|."""
+  idx = start
+  dist2 = float(-1.0)
+  for i in range(start, end):
+    d2 = wp.length_sq(wp.cross(polygon[i] - p, dir))
+    if d2 > dist2:
+      idx = i
+      dist2 = d2
+  return idx, wp.sqrt(dist2)
 
 
 @wp.func
 def _polygon_quad(polygon: wp.array[wp.vec3], npolygon: int) -> wp.vec4i:
-  """Returns the indices of a quadrilateral of maximum area in a convex polygon (npolygon > 4)."""
+  """Returns the indices of a quadrilateral of maximum area in a convex polygon (npolygon > 4).
+
+  Quadrilateral abcd splits along its diagonal ac into triangles abc and acd, so for each diagonal
+  the best b and d are found independently as the vertices farthest from ac on either side.
+  """
   res = wp.vec4i(0, 1, 2, 3)
-  m = float(-1.0)
-  for a in range(npolygon):
-    for b in range(a + 1, npolygon):
-      for c in range(b + 1, npolygon):
-        for d in range(c + 1, npolygon):
-          area = _area4(polygon[a], polygon[b], polygon[c], polygon[d])
-          if area > m:
-            m = area
-            res = wp.vec4i(a, b, c, d)
+  max_area = float(-1.0)
+  for a in range(npolygon - 3):
+    for c in range(a + 2, npolygon - 1):
+      ac = polygon[c] - polygon[a]
+      b, area_abc = _farthest_from_line(polygon, a + 1, c, polygon[a], ac)
+      d, area_acd = _farthest_from_line(polygon, c + 1, npolygon, polygon[a], ac)
+      if area_abc + area_acd > max_area:
+        max_area = area_abc + area_acd
+        res = wp.vec4i(a, b, c, d)
   return res
 
 
