@@ -1,0 +1,59 @@
+Summary for 4096 parallel rollouts
+
+Total JIT time: 0.14 s
+Total simulation time: 1.03 s
+Total steps per second: 3,961,627
+Total realtime factor: 7,923.25 x
+Total time per step: 252.42 ns
+Total converged worlds: 4096 / 4096
+
+Event trace:
+
+step: 247.78
+  forward: 235.39
+    fwd_velocity: 10.75
+      passive: 2.92
+      tendon_bias: 0.08
+      rne: 3.90
+      com_vel: 3.43
+    sensor_pos: 0.08
+    fwd_position: 90.95
+      make_constraint: 23.21
+      tendon_armature: 0.08
+      crb: 2.81
+      fwd_kinematics: 10.60
+        kinematics: 4.23
+        flex: 0.08
+        tendon: 0.08
+        camlight: 0.08
+        com_pos: 5.39
+      collision: 52.91
+        convex_narrowphase: 50.23
+        nxn_broadphase: 1.41
+        primitive_narrowphase: 0.80
+      transmission: 0.68
+    fwd_acceleration: 5.18
+      xfrc_accumulate: 1.01
+    sensor_acc: 0.08
+    solve: 126.25
+      mul_m: 1.01
+      solve_m: 2.02
+    fwd_actuation: 0.51
+    sensor_vel: 0.09
+  implicit: 11.81
+    deriv_smooth_vel: 2.61
+
+solver niter:
+
+mean     std      min  max
+--------------------------
+8.58966  12.0365    1   78
+1.41317  1.37072    1   12
+1.43294  1.41308    1   12
+1.43532  1.42138    1   12
+1.43749  1.42595    1   12
+1.43559   1.4231    1   12
+1.43607   1.4216    1   12
+1.43405  1.42181    1   12
+ 1.4378  1.42962    1   13
+1.43542   1.4255    1   12

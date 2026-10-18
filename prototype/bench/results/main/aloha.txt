@@ -1,0 +1,14 @@
+aloha_pot.steps_per_second: 2147581.4633311415
+aloha_pot.converged_worlds: 8192
+aloha_pot.solver_niter_mean: 1.5405870984484267
+aloha_pot.step.forward.fwd_position.collision: 182.59246210143394
+aloha_pot.step.forward.fwd_position.collision.convex_narrowphase: 82.81413894590943
+aloha_pot.step.forward.solve: 171.2251108325948
+aloha_clutter.steps_per_second: 300980.9595080895
+aloha_clutter.converged_worlds: 2048
+aloha_clutter.solver_niter_mean: 2.6734273474418395
+aloha_clutter.step.forward.fwd_position.collision[0]: 1698.6733208825492
+aloha_clutter.step.forward.fwd_position.collision[1]: 207.14723639583136
+aloha_clutter.step.forward.fwd_position.collision.convex_narrowphase[0]: 788.6040307717207
+aloha_clutter.step.forward.fwd_position.collision.convex_narrowphase[1]: 39.17227823648153
+aloha_clutter.step.forward.solve: 814.8842629206731

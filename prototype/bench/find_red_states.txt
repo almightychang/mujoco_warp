@@ -1,0 +1,21 @@
+CASE shallow-box: 2999/4096 dropped in batch
+  pos="-2.19920637e-10 2.63130406e-10 0.499725401" depth=4.335e-06 warp dist=2.449e-13 ncon=1 c dist=-4.33859848e-06
+  pos="-6.45435927e-10 -3.42421447e-09 0.499727875" depth=1.861e-06 warp dist=4.215e-09 ncon=1 c dist=-1.86500572e-06
+  pos="-2.18593832e-09 1.20706045e-09 0.49972865" depth=1.099e-06 warp dist=8.429e-09 ncon=1 c dist=-1.09014534e-06
+  pos="-1.21194939e-08 1.15138468e-08 0.499728709" depth=1.039e-06 warp dist=8.429e-09 ncon=1 c dist=-1.0305407e-06
+CASE shallow-mesh: 2640/4096 dropped in batch
+  pos="-2.19920637e-10 2.63130406e-10 0.221725404" depth=4.335e-06 warp dist=5.033e-09 ncon=1 c dist=-4.33538542e-06
+  pos="-6.45435927e-10 -3.42421447e-09 0.221727878" depth=1.861e-06 warp dist=1.565e-08 ncon=1 c dist=-1.86179266e-06
+  pos="3.7699257e-09 -7.63761054e-09 0.22172156" depth=8.180e-06 warp dist=1.661e-08 ncon=1 c dist=-8.17988501e-06
+  pos="1.17291787e-10 -5.473616e-10 0.221724376" depth=5.364e-06 warp dist=1.646e-08 ncon=1 c dist=-5.36356554e-06
+CASE deep-box: 0/4096 dropped in batch
+CASE deep-mesh: 27/4096 dropped in batch
+  pos="-6.67629294e-08 6.34265831e-08 0.221625865" depth=1.039e-04 warp dist=0.000e+00 ncon=1 c dist=-0.000103875142
+  pos="6.54282672e-08 -6.04340187e-08 0.221613139" depth=1.166e-04 warp dist=0.000e+00 ncon=1 c dist=-0.000116600734
+  pos="6.77480614e-08 -4.6149669e-08 0.221589953" depth=1.398e-04 warp dist=0.000e+00 ncon=1 c dist=-0.000139786941
+  pos="-1.28526196e-07 -9.86971926e-08 0.221469492" depth=2.602e-04 warp dist=0.000e+00 ncon=1 c dist=-0.000260247928
+CASE centered-box: 491/4096 dropped in batch
+  pos="-0 0 0.499717653" depth=1.208e-05 warp dist=6.322e-09 ncon=1 c dist=-1.20872023e-05
+  pos="-0 0 0.49971962" depth=1.013e-05 warp dist=1.054e-08 ncon=1 c dist=-1.0120249e-05
+  pos="-0 0 0.49971807" depth=1.167e-05 warp dist=0.000e+00 ncon=1 c dist=-1.16699698e-05
+  pos="-0 -0 0.49971503" depth=1.472e-05 warp dist=4.215e-09 ncon=1 c dist=-1.47098067e-05

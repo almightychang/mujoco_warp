@@ -1,0 +1,250 @@
+F.FF.FFF                                                                 [100%]
+=================================== FAILURES ===================================
+_________________ GJKTest.test_box_box_aligned_faces_centered __________________
+
+self = <mujoco_warp._src.collision_gjk_test.GJKTest testMethod=test_box_box_aligned_faces_centered>
+pos = '0 0 0.499717653', dist_mujoco = -1.20872023e-05
+
+    @parameterized.named_parameters(
+      # origin on a polytope3 face that is the Minkowski boundary
+      ("shallow", "-6.45435927e-10 -3.42421447e-09 0.499727875", -1.86500572e-06),
+      ("centered", "0 0 0.499717653", -1.20872023e-05),
+      # aligned but separated
+      ("separated", "0 0 0.49973074", 1e-06),
+    )
+    def test_box_box_aligned_faces(self, pos: str, dist_mujoco: float):
+      """Test box-box distance for face-aligned boxes near the symmetric pose."""
+      _, _, m, d = test_data.fixture(
+        xml=f"""
+      <mujoco>
+        <worldbody>
+          <geom type="box" size="0.2 0.2 0.2" pos="0 0 0.19972974"/>
+          <geom type="box" size="0.1 0.1 0.1" pos="{pos}"/>
+        </worldbody>
+      </mujoco>
+      """
+      )
+      dist, _, _, _ = _geom_dist(m, d, 0, 1)
+>     self.assertAlmostEqual(dist_mujoco, dist, delta=1e-7)
+E     AssertionError: -1.20872023e-05 != np.float32(6.3223666e-09) within 1e-07 delta (np.float32(1.2093525e-05) difference)
+
+../mujoco_warp/_src/collision_gjk_test.py:520: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Warp 1.15.0 initialized:
+   CUDA Toolkit 12.9, Driver 13.0
+   Devices:
+     "cpu"      : "x86_64"
+     "cuda:0"   : "NVIDIA GeForce RTX 5080" (15 GiB, sm_120, mempool enabled)
+   Kernel cache:
+     /home/sam/.cache/warp/1.15.0
+Module _geom_dist__locals___ccd_kernel_3e0345c8 3e0345c load on device 'cuda:0' took 3.82 ms  (cached)
+__________________ GJKTest.test_box_box_aligned_faces_shallow __________________
+
+self = <mujoco_warp._src.collision_gjk_test.GJKTest testMethod=test_box_box_aligned_faces_shallow>
+pos = '-6.45435927e-10 -3.42421447e-09 0.499727875'
+dist_mujoco = -1.86500572e-06
+
+    @parameterized.named_parameters(
+      # origin on a polytope3 face that is the Minkowski boundary
+      ("shallow", "-6.45435927e-10 -3.42421447e-09 0.499727875", -1.86500572e-06),
+      ("centered", "0 0 0.499717653", -1.20872023e-05),
+      # aligned but separated
+      ("separated", "0 0 0.49973074", 1e-06),
+    )
+    def test_box_box_aligned_faces(self, pos: str, dist_mujoco: float):
+      """Test box-box distance for face-aligned boxes near the symmetric pose."""
+      _, _, m, d = test_data.fixture(
+        xml=f"""
+      <mujoco>
+        <worldbody>
+          <geom type="box" size="0.2 0.2 0.2" pos="0 0 0.19972974"/>
+          <geom type="box" size="0.1 0.1 0.1" pos="{pos}"/>
+        </worldbody>
+      </mujoco>
+      """
+      )
+      dist, _, _, _ = _geom_dist(m, d, 0, 1)
+>     self.assertAlmostEqual(dist_mujoco, dist, delta=1e-7)
+E     AssertionError: -1.86500572e-06 != np.float32(4.214633e-09) within 1e-07 delta (np.float32(1.8692203e-06) difference)
+
+../mujoco_warp/_src/collision_gjk_test.py:520: AssertionError
+__________________ GJKTest.test_mesh_mesh_aligned_faces_deep ___________________
+
+self = <mujoco_warp._src.collision_gjk_test.GJKTest testMethod=test_mesh_mesh_aligned_faces_deep>
+pos = '-1.28526196e-07 -9.86971926e-08 0.221469492'
+dist_mujoco = -0.000260247928
+
+    @parameterized.named_parameters(
+      # origin on a polytope3 face that is the Minkowski boundary
+      ("shallow", "-6.45435927e-10 -3.42421447e-09 0.221727878", -1.86179266e-06),
+      # origin on a polytope4 face that lies on the symmetry plane
+      ("deep", "-1.28526196e-07 -9.86971926e-08 0.221469492", -0.000260247928),
+      # aligned but separated
+      ("separated", "0 0 0.22173074", 1e-06),
+    )
+    def test_mesh_mesh_aligned_faces(self, pos: str, dist_mujoco: float):
+      """Test mesh-mesh distance for a face-aligned plate on a slab near the symmetric pose."""
+      _, _, m, d = test_data.fixture(
+        xml=f"""
+      <mujoco>
+        <asset>
+          <mesh name="slab" vertex="-0.3 -0.3 -0.02  -0.3 -0.3 0.02  -0.3 0.3 -0.02  -0.3 0.3 0.02
+                                    0.3 -0.3 -0.02  0.3 -0.3 0.02  0.3 0.3 -0.02  0.3 0.3 0.02"/>
+          <mesh name="plate" vertex="-0.105 -0.148 -0.002  -0.105 -0.148 0.002  -0.105 0.148 -0.002  -0.105 0.148 0.002
+                                     0.105 -0.148 -0.002  0.105 -0.148 0.002  0.105 0.148 -0.002  0.105 0.148 0.002"/>
+        </asset>
+        <worldbody>
+          <geom type="mesh" mesh="slab" pos="0 0 0.19972974"/>
+          <geom type="mesh" mesh="plate" pos="{pos}"/>
+        </worldbody>
+      </mujoco>
+      """
+      )
+      dist, _, _, _ = _geom_dist(m, d, 0, 1)
+>     self.assertAlmostEqual(dist_mujoco, dist, delta=1e-7)
+E     AssertionError: -0.000260247928 != np.float32(0.0) within 1e-07 delta (np.float32(0.00026024794) difference)
+
+../mujoco_warp/_src/collision_gjk_test.py:549: AssertionError
+_________________ GJKTest.test_mesh_mesh_aligned_faces_shallow _________________
+
+self = <mujoco_warp._src.collision_gjk_test.GJKTest testMethod=test_mesh_mesh_aligned_faces_shallow>
+pos = '-6.45435927e-10 -3.42421447e-09 0.221727878'
+dist_mujoco = -1.86179266e-06
+
+    @parameterized.named_parameters(
+      # origin on a polytope3 face that is the Minkowski boundary
+      ("shallow", "-6.45435927e-10 -3.42421447e-09 0.221727878", -1.86179266e-06),
+      # origin on a polytope4 face that lies on the symmetry plane
+      ("deep", "-1.28526196e-07 -9.86971926e-08 0.221469492", -0.000260247928),
+      # aligned but separated
+      ("separated", "0 0 0.22173074", 1e-06),
+    )
+    def test_mesh_mesh_aligned_faces(self, pos: str, dist_mujoco: float):
+      """Test mesh-mesh distance for a face-aligned plate on a slab near the symmetric pose."""
+      _, _, m, d = test_data.fixture(
+        xml=f"""
+      <mujoco>
+        <asset>
+          <mesh name="slab" vertex="-0.3 -0.3 -0.02  -0.3 -0.3 0.02  -0.3 0.3 -0.02  -0.3 0.3 0.02
+                                    0.3 -0.3 -0.02  0.3 -0.3 0.02  0.3 0.3 -0.02  0.3 0.3 0.02"/>
+          <mesh name="plate" vertex="-0.105 -0.148 -0.002  -0.105 -0.148 0.002  -0.105 0.148 -0.002  -0.105 0.148 0.002
+                                     0.105 -0.148 -0.002  0.105 -0.148 0.002  0.105 0.148 -0.002  0.105 0.148 0.002"/>
+        </asset>
+        <worldbody>
+          <geom type="mesh" mesh="slab" pos="0 0 0.19972974"/>
+          <geom type="mesh" mesh="plate" pos="{pos}"/>
+        </worldbody>
+      </mujoco>
+      """
+      )
+      dist, _, _, _ = _geom_dist(m, d, 0, 1)
+>     self.assertAlmostEqual(dist_mujoco, dist, delta=1e-7)
+E     AssertionError: -1.86179266e-06 != np.float32(1.5645092e-08) within 1e-07 delta (np.float32(1.8774377e-06) difference)
+
+../mujoco_warp/_src/collision_gjk_test.py:549: AssertionError
+________________ GJKTest.test_mesh_mesh_aligned_plates_settling ________________
+
+self = <mujoco_warp._src.collision_gjk_test.GJKTest testMethod=test_mesh_mesh_aligned_plates_settling>
+pose1 = ('-7.09409598e-09 -7.94307109e-09 0.0417047702', '1 -6.70107241e-08 -5.41484781e-07 4.45444931e-10')
+pose2 = ('6.73466957e-07 4.36415291e-07 0.0452997684', '1 -0.000122971556 0.000191919724 4.92365402e-08')
+dist_mujoco = -0.000481798305
+
+    @parameterized.named_parameters(
+      # origin on a polytope3 face that is the Minkowski boundary
+      (
+        "shallow",
+        ("0 0 0.19972974", "1 0 0 0"),
+        ("-6.45435927e-10 -3.42421447e-09 0.203727886", "1 0 0 0"),
+        -1.85410925e-06,
+      ),
+      # a settling stack of plates: origin on a polytope3 face inside the Minkowski difference
+      (
+        "settling",
+        ("-7.09409598e-09 -7.94307109e-09 0.0417047702", "1 -6.70107241e-08 -5.41484781e-07 4.45444931e-10"),
+        ("6.73466957e-07 4.36415291e-07 0.0452997684", "1 -0.000122971556 0.000191919724 4.92365402e-08"),
+        -0.000481798305,
+      ),
+    )
+    def test_mesh_mesh_aligned_plates(self, pose1: tuple[str, str], pose2: tuple[str, str], dist_mujoco: float):
+      """Test mesh-mesh distance for two thin plates stacked face-to-face near the symmetric pose."""
+      _, _, m, d = test_data.fixture(
+        xml=f"""
+      <mujoco>
+        <asset>
+          <mesh name="plate" vertex="-0.105 -0.148 -0.002  -0.105 -0.148 0.002  -0.105 0.148 -0.002  -0.105 0.148 0.002
+                                     0.105 -0.148 -0.002  0.105 -0.148 0.002  0.105 0.148 -0.002  0.105 0.148 0.002"/>
+        </asset>
+        <worldbody>
+          <geom type="mesh" mesh="plate" pos="{pose1[0]}" quat="{pose1[1]}"/>
+          <geom type="mesh" mesh="plate" pos="{pose2[0]}" quat="{pose2[1]}"/>
+        </worldbody>
+      </mujoco>
+      """
+      )
+      dist, _, _, _ = _geom_dist(m, d, 0, 1)
+>     self.assertAlmostEqual(dist_mujoco, dist, delta=1e-7)
+E     AssertionError: -0.000481798305 != np.float32(0.0) within 1e-07 delta (np.float32(0.0004817983) difference)
+
+../mujoco_warp/_src/collision_gjk_test.py:584: AssertionError
+________________ GJKTest.test_mesh_mesh_aligned_plates_shallow _________________
+
+self = <mujoco_warp._src.collision_gjk_test.GJKTest testMethod=test_mesh_mesh_aligned_plates_shallow>
+pose1 = ('0 0 0.19972974', '1 0 0 0')
+pose2 = ('-6.45435927e-10 -3.42421447e-09 0.203727886', '1 0 0 0')
+dist_mujoco = -1.85410925e-06
+
+    @parameterized.named_parameters(
+      # origin on a polytope3 face that is the Minkowski boundary
+      (
+        "shallow",
+        ("0 0 0.19972974", "1 0 0 0"),
+        ("-6.45435927e-10 -3.42421447e-09 0.203727886", "1 0 0 0"),
+        -1.85410925e-06,
+      ),
+      # a settling stack of plates: origin on a polytope3 face inside the Minkowski difference
+      (
+        "settling",
+        ("-7.09409598e-09 -7.94307109e-09 0.0417047702", "1 -6.70107241e-08 -5.41484781e-07 4.45444931e-10"),
+        ("6.73466957e-07 4.36415291e-07 0.0452997684", "1 -0.000122971556 0.000191919724 4.92365402e-08"),
+        -0.000481798305,
+      ),
+    )
+    def test_mesh_mesh_aligned_plates(self, pose1: tuple[str, str], pose2: tuple[str, str], dist_mujoco: float):
+      """Test mesh-mesh distance for two thin plates stacked face-to-face near the symmetric pose."""
+      _, _, m, d = test_data.fixture(
+        xml=f"""
+      <mujoco>
+        <asset>
+          <mesh name="plate" vertex="-0.105 -0.148 -0.002  -0.105 -0.148 0.002  -0.105 0.148 -0.002  -0.105 0.148 0.002
+                                     0.105 -0.148 -0.002  0.105 -0.148 0.002  0.105 0.148 -0.002  0.105 0.148 0.002"/>
+        </asset>
+        <worldbody>
+          <geom type="mesh" mesh="plate" pos="{pose1[0]}" quat="{pose1[1]}"/>
+          <geom type="mesh" mesh="plate" pos="{pose2[0]}" quat="{pose2[1]}"/>
+        </worldbody>
+      </mujoco>
+      """
+      )
+      dist, _, _, _ = _geom_dist(m, d, 0, 1)
+>     self.assertAlmostEqual(dist_mujoco, dist, delta=1e-7)
+E     AssertionError: -1.85410925e-06 != np.float32(4.449751e-09) within 1e-07 delta (np.float32(1.8585589e-06) difference)
+
+../mujoco_warp/_src/collision_gjk_test.py:584: AssertionError
+=============================== warnings summary ===============================
+mujoco_warp/_src/collision_gjk_test.py::GJKTest::test_box_box_aligned_faces_centered
+  /home/sam/Repos/mujoco_warp/.venv/lib/python3.14/site-packages/warp/_src/apic/types.py:45: DeprecationWarning: Due to '_pack_', the 'APICLaunchParamRecord' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+    class APICLaunchParamRecord(ctypes.Structure):
+
+mujoco_warp/_src/collision_gjk_test.py::GJKTest::test_box_box_aligned_faces_centered
+  /home/sam/Repos/mujoco_warp/.venv/lib/python3.14/site-packages/warp/_src/apic/types.py:65: DeprecationWarning: Due to '_pack_', the 'APICLaunchPtrLocation' Structure will use memory layout compatible with MSVC (Windows). If this is intended, set _layout_ to 'ms'. The implicit default is deprecated and slated to become an error in Python 3.19.
+    class APICLaunchPtrLocation(ctypes.Structure):
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../mujoco_warp/_src/collision_gjk_test.py::GJKTest::test_box_box_aligned_faces_centered
+FAILED ../mujoco_warp/_src/collision_gjk_test.py::GJKTest::test_box_box_aligned_faces_shallow
+FAILED ../mujoco_warp/_src/collision_gjk_test.py::GJKTest::test_mesh_mesh_aligned_faces_deep
+FAILED ../mujoco_warp/_src/collision_gjk_test.py::GJKTest::test_mesh_mesh_aligned_faces_shallow
+FAILED ../mujoco_warp/_src/collision_gjk_test.py::GJKTest::test_mesh_mesh_aligned_plates_settling
+FAILED ../mujoco_warp/_src/collision_gjk_test.py::GJKTest::test_mesh_mesh_aligned_plates_shallow
+6 failed, 2 passed, 37 deselected, 2 warnings in 0.45s

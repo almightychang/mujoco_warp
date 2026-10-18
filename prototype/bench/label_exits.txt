@@ -1,0 +1,38 @@
+STATE shallow-box depth=4.335e-06 pos="-2.19920637e-10 2.63130406e-10 0.499725401"
+DBG B boundary status=7 gjk_dist=2.44905e-13
+STATE shallow-box depth=1.861e-06 pos="-6.45435927e-10 -3.42421447e-09 0.499727875"
+DBG B boundary status=7 gjk_dist=4.21463e-09
+STATE shallow-box depth=1.099e-06 pos="-2.18593832e-09 1.20706045e-09 0.49972865"
+DBG B boundary status=7 gjk_dist=8.42934e-09
+STATE shallow-box depth=1.039e-06 pos="-1.21194939e-08 1.15138468e-08 0.499728709"
+DBG B boundary status=7 gjk_dist=8.42934e-09
+STATE shallow-mesh depth=4.335e-06 pos="-2.19920637e-10 2.63130406e-10 0.221725404"
+DBG B boundary status=7 gjk_dist=5.03324e-09
+STATE shallow-mesh depth=1.861e-06 pos="-6.45435927e-10 -3.42421447e-09 0.221727878"
+DBG B boundary status=7 gjk_dist=1.56451e-08
+STATE shallow-mesh depth=8.180e-06 pos="3.7699257e-09 -7.63761054e-09 0.22172156"
+DBG B boundary status=7 gjk_dist=1.66084e-08
+STATE shallow-mesh depth=5.364e-06 pos="1.17291787e-10 -5.473616e-10 0.221724376"
+DBG B boundary status=7 gjk_dist=1.64573e-08
+STATE deep-mesh depth=1.039e-04 pos="-6.67629294e-08 6.34265831e-08 0.221625865"
+DBG P4 tetra_fail dmin2=1.03423e-15
+DBG B boundary status=12 gjk_dist=0
+STATE deep-mesh depth=1.166e-04 pos="6.54282672e-08 -6.04340187e-08 0.221613139"
+DBG P4 tetra_fail dmin2=1.03423e-15
+DBG B boundary status=12 gjk_dist=0
+STATE deep-mesh depth=1.398e-04 pos="6.77480614e-08 -4.6149669e-08 0.221589953"
+DBG P4 tetra_fail dmin2=1.03423e-15
+DBG B boundary status=12 gjk_dist=0
+STATE deep-mesh depth=2.602e-04 pos="-1.28526196e-07 -9.86971926e-08 0.221469492"
+DBG P4 tetra_fail dmin2=1.70791e-15
+DBG B boundary status=12 gjk_dist=0
+STATE centered-box depth=1.208e-05 pos="-0 0 0.499717653"
+DBG B boundary status=7 gjk_dist=6.32237e-09
+STATE centered-box depth=1.013e-05 pos="-0 0 0.49971962"
+DBG B boundary status=7 gjk_dist=1.0537e-08
+STATE centered-box depth=1.167e-05 pos="-0 0 0.49971807"
+DBG P4 tetra_fail dmin2=1.63141e-17
+DBG P4 fallback_1532
+DBG B boundary status=7 gjk_dist=0
+STATE centered-box depth=1.472e-05 pos="-0 -0 0.49971503"
+DBG B boundary status=7 gjk_dist=4.2151e-09

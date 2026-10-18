@@ -1,0 +1,8 @@
+Compiling entry function 'ccd_kernel_builder__locals__ccd_kernel_c4736b75_cuda_kernel_forward' for 'sm_120'
+    520 bytes stack frame, 348 bytes spill stores, 464 bytes spill loads
+Used 128 registers, used 0 barriers, 520 bytes cumulative stack size, 256 bytes smem
+Compiling entry function 'ccd_kernel_builder__locals__ccd_kernel_89593b98_cuda_kernel_forward' for 'sm_120'
+    512 bytes stack frame, 344 bytes spill stores, 360 bytes spill loads
+Used 128 registers, used 0 barriers, 512 bytes cumulative stack size, 256 bytes smem
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+    0 bytes stack frame, 12 bytes spill stores, 16 bytes spill loads
