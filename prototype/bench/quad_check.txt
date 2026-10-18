@@ -1,6 +1,0 @@
-Keikha 16-gon, diagonal scan: shortfall 0.00e+00
-Keikha 16-gon, pointers: shortfall 0.00e+00
-Keikha 16-gon, hill climb: shortfall 3.89e-02
-diagonal scan: worst shortfall 1.68e-07, cases > 1e-5: 0 / 2001
-pointers: worst shortfall 2.44e-01, cases > 1e-5: 425 / 2001
-hill climb: worst shortfall 1.00e+00, cases > 1e-5: 1560 / 2001
