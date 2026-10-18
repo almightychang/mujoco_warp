@@ -1629,6 +1629,54 @@ class CollisionTest(parameterized.TestCase):
     normal = d.contact.frame.numpy()[:nacon, 0]
     np.testing.assert_allclose(np.abs(normal[:, 2]), 1.0, atol=1e-6)
 
+  @parameterized.named_parameters(
+    (
+      "box",
+      '<geom type="box" size="0.2 0.2 0.2" pos="0 0 0.19972974"/>',
+      '<geom type="box" size="0.1 0.1 0.1"/>',
+      "4.37352625e-08 -4.40844481e-08 0.499540061 1 0 0 0",
+      -0.000189679241,
+    ),
+    (
+      "plates",
+      '<geom type="mesh" mesh="plate" pos="0 0 0.19972974"/>',
+      '<geom type="mesh" mesh="plate"/>',
+      "1.17604454e-10 2.09445308e-12 0.203728601 1 0 0 0",
+      -1.13885351e-06,
+    ),
+  )
+  def test_aligned_faces_not_separated(self, bottom: str, top: str, qpos: str, dist_mujoco: float):
+    """Tests that overlapping face-aligned geoms are not reported as separated by GJK."""
+    _, _, m, d = test_data.fixture(
+      xml=f"""
+    <mujoco>
+      <asset>
+        <mesh name="plate" vertex="-0.105 -0.148 -0.002  -0.105 -0.148 0.002  -0.105 0.148 -0.002  -0.105 0.148 0.002
+                                   0.105 -0.148 -0.002  0.105 -0.148 0.002  0.105 0.148 -0.002  0.105 0.148 0.002"/>
+      </asset>
+      <worldbody>
+        {bottom}
+        <body>
+          <freejoint/>
+          {top}
+        </body>
+      </worldbody>
+      <keyframe>
+        <key qpos="{qpos}"/>
+      </keyframe>
+    </mujoco>
+    """,
+      keyframe=0,
+    )
+
+    d.contact.dist.fill_(wp.inf)
+    mjw.kinematics(m, d)
+    mjw.collision(m, d)
+
+    nacon = d.nacon.numpy()[0]
+    self.assertGreater(nacon, 0)
+    self.assertAlmostEqual(d.contact.dist.numpy()[:nacon].min(), dist_mujoco, delta=1e-7)
+
   _SDF_VOLUME = {
     "sdf_plane": """
         <mujoco>

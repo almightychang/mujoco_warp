@@ -620,7 +620,7 @@ def _gjk_support(
   simplex: mat43,
   n: int,
   is_discrete: bool,
-) -> Tuple[SupportPoint, SupportPoint]:
+) -> Tuple[SupportPoint, SupportPoint, wp.vec3]:
   dir_neg = x_k / x_norm
 
   # tuning for discrete geoms when direction is noisy
@@ -644,7 +644,7 @@ def _gjk_support(
 
   sp1 = support(geom1, geomtype1, -dir_neg)
   sp2 = support(geom2, geomtype2, dir_neg)
-  return sp1, sp2
+  return sp1, sp2, dir_neg
 
 
 @wp.func
@@ -686,7 +686,7 @@ def gjk(
       break
 
     # compute the support point with direction tuning
-    sp1, sp2 = _gjk_support(geom1, geom2, geomtype1, geomtype2, x_k, xnorm, simplex, n, is_discrete)
+    sp1, sp2, dir = _gjk_support(geom1, geom2, geomtype1, geomtype2, x_k, xnorm, simplex, n, is_discrete)
     simplex1[n] = sp1.point
     geom1.index = sp1.cached_index
     simplex_index1[n] = sp1.vertex_index
@@ -703,9 +703,10 @@ def gjk(
     if wp.dot(x_k, x_k - simplex[n]) < epsilon:
       break
 
-    # the lower bound on distance between the two geoms is (lower / x_norm)
+    # the lower bound on distance between the two geoms, taken along the direction of the support
+    # point since x_k is rounding noise when the origin is within rounding of the simplex;
     # if lower > 0, then the geoms are separated
-    lower = wp.dot(x_k, simplex[n])
+    lower = wp.dot(dir, simplex[n])
     if cutoff == 0.0:
       if lower > 0.0:
         result = GJKResult()
@@ -716,7 +717,7 @@ def gjk(
         result.index2 = geom2.index
         return result
     elif cutoff < FLOAT_MAX:
-      if lower > 0.0 and lower >= cutoff * xnorm:
+      if lower > 0.0 and lower >= cutoff:
         result = GJKResult()
         result.separated = True
         result.dim = 0
