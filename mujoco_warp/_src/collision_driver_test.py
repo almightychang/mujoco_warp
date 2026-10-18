@@ -1677,6 +1677,41 @@ class CollisionTest(parameterized.TestCase):
     self.assertGreater(nacon, 0)
     self.assertAlmostEqual(d.contact.dist.numpy()[:nacon].min(), dist_mujoco, delta=1e-7)
 
+  def test_box_mesh_ridge_contact_face(self):
+    """Tests that multicontact clips against the mesh face most aligned with the box face."""
+    # the ridge edge touches the box; its faces are tilted by 2 and 0.5 degrees
+    _, _, m, d = test_data.fixture(
+      xml="""
+    <mujoco>
+      <asset>
+        <mesh name="ridge" vertex="0 -0.03 0  -0.05 -0.03 0.00174603847  0.05 -0.03 0.00043634339  -0.05 -0.03 0.02
+                                   0.05 -0.03 0.02  0 0.03 0  -0.05 0.03 0.00174603847  0.05 0.03 0.00043634339
+                                   -0.05 0.03 0.02  0.05 0.03 0.02"/>
+      </asset>
+      <worldbody>
+        <geom type="box" size="0.2 0.2 0.01" pos="0 0 -0.01"/>
+        <body>
+          <freejoint/>
+          <geom type="mesh" mesh="ridge"/>
+        </body>
+      </worldbody>
+      <keyframe>
+        <key qpos="0 0 -0.0001 1 0 0 0"/>
+      </keyframe>
+    </mujoco>
+    """,
+      keyframe=0,
+    )
+
+    d.contact.frame.fill_(wp.inf)
+    mjw.kinematics(m, d)
+    mjw.collision(m, d)
+
+    nacon = d.nacon.numpy()[0]
+    self.assertEqual(nacon, 2)
+    normal = d.contact.frame.numpy()[:nacon, 0]
+    np.testing.assert_allclose(np.abs(normal[:, 2]), np.cos(np.radians(0.5)), atol=1e-6)
+
   _SDF_VOLUME = {
     "sdf_plane": """
         <mujoco>

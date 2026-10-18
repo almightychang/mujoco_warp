@@ -1557,25 +1557,30 @@ def _feature_dim(
   return dim, feature_index, feature_vert
 
 
-# find two normals that are facing each other within a tolerance, return 1 if found
+# find the two normals that face each other the most, within a tolerance, return 1 if found
 @wp.func
 def _aligned_faces(vert1: wp.array[wp.vec3], len1: int, vert2: wp.array[wp.vec3], len2: int) -> Tuple[int, wp.vec2i]:
+  found = int(0)
+  best = float(-FACE_TOL)
   res = wp.vec2i()
   for i in range(len1):
     for j in range(len2):
-      if wp.dot(vert1[i], vert2[j]) < -FACE_TOL:
-        res[0] = i
-        res[1] = j
-        return 1, res
-  return 0, res
+      cos = wp.dot(vert1[i], vert2[j])
+      if cos < best:
+        best = cos
+        res = wp.vec2i(i, j)
+        found = 1
+  return found, res
 
 
-# find two normals that are perpendicular to each other within a tolerance
+# find the edge and face normals that are the most perpendicular, within a tolerance
 # return 1 if found
 @wp.func
 def _aligned_face_edge(
   edge: wp.array[wp.vec3], nedge: int, face: wp.array[wp.vec3], nface: int, dir: wp.vec3
 ) -> Tuple[int, wp.vec2i]:
+  found = int(0)
+  best = float(EDGE_TOL)
   res = wp.vec2i()
   for i in range(nface):
     # ignore faces pointing away from the collision direction (negative dot product)
@@ -1583,11 +1588,12 @@ def _aligned_face_edge(
       continue
 
     for j in range(nedge):
-      if wp.abs(wp.dot(edge[j], face[i])) < EDGE_TOL:
-        res[0] = j
-        res[1] = i
-        return 1, res
-  return 0, res
+      sin = wp.abs(wp.dot(edge[j], face[i]))
+      if sin < best:
+        best = sin
+        res = wp.vec2i(j, i)
+        found = 1
+  return found, res
 
 
 # find up to n <= 2 common integers of two arrays, return n
